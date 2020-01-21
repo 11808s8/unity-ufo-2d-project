@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidbody2d;
 
     public float speed;
-    public float winningCount;
 
+    private GameObject pickups;
     private int count;
 
     public TextMeshProUGUI countText;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        pickups = GameObject.Find("Pickups"); // search gameobject by name!
         winText.gameObject.SetActive(false);
         winText.text = "";
         rigidbody2d = GetComponent<Rigidbody2D> ();
@@ -50,7 +51,8 @@ public class PlayerController : MonoBehaviour
 
     void WinCondition()
     {
-        if (count >= winningCount)
+        // transform.childCount counts all the children that a transform has!
+        if (count >= pickups.transform.childCount)
         {
             winText.gameObject.SetActive(true);
             winText.text = "You just won the game!";
