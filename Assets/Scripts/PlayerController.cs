@@ -24,4 +24,13 @@ public class PlayerController : MonoBehaviour
         rigidbody2d.AddForce(movement*speed);
 
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }
